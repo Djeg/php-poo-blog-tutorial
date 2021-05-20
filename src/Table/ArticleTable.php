@@ -78,5 +78,20 @@ class ArticleTable
         string $description,
         string $content
     ): void {
+        // ETAPE 3 : Création de la requète SQL.
+        // Attention à ne pas concaténer les valeurs
+        // diréctement mais à plutôt utiliser des ?
+        $sql = 'INSERT INTO articles (title, description, content) VALUES (?, ?, ?)';
+
+        // ETAPE 4 : Nous préparons la requète SQL et nous récupérons une requète
+        $request = $this->pdo->prepare($sql);
+
+        // ETAPE 5 : Envoyer ma requète à la base de données. C'est cette commande
+        // qui enregistre l'article dans la base.
+        $request->execute([
+            $title,
+            $description,
+            $content,
+        ]);
     }
 }
