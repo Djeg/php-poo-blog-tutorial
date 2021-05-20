@@ -35,11 +35,11 @@ if (!empty($_POST)) {
 
 <h1>Page de création d'un article</h1>
 
-<?php if ($success) { ?>
+<? if ($success) : ?>
     <div class="alert alert-success" role="alert">
         L'article a bien été créé
     </div>
-<?php } ?>
+<? endif; ?>
 
 <form method="POST" action="./index.php?page=newArticle">
     <div class="mb-3">
