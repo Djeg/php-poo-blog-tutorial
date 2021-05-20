@@ -1,6 +1,8 @@
 <?php
 require __DIR__ . '/partials/themeStart.php';
 
+$success = false;
+
 if (!empty($_POST)) {
     // ETAPE 1 : Se connécter à la base de données
     $pdo = new PDO('mysql:dbname=php-poo-blog;host=mysql', 'root', 'root');
@@ -25,11 +27,19 @@ if (!empty($_POST)) {
         $description,
         $content,
     ]);
+
+    $success = true;
 }
 
 ?>
 
 <h1>Page de création d'un article</h1>
+
+<?php if ($success) { ?>
+    <div class="alert alert-success" role="alert">
+        L'article a bien été créé
+    </div>
+<?php } ?>
 
 <form method="POST" action="./index.php?page=newArticle">
     <div class="mb-3">
