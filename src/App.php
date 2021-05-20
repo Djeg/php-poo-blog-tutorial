@@ -34,7 +34,6 @@ class App
         // ETAPE 2 : Nous affichons la page demandée
 
         $pagePath = __DIR__ . '/../pages/' . $pageName . '.php';
-        $pageContent = '';
 
         // ob_start démarre l'enregistrement de tout les "echo"
         // qui peuvent subvenir !
@@ -55,8 +54,6 @@ class App
 
         // ob_get_clean permet de récupérer tout ce qui a été echo
         // dans une variable
-        $pageContent = ob_get_clean();
-
-        echo $pageContent;
+        echo ob_get_clean();
     }
 }
