@@ -1,5 +1,19 @@
 <?php
 require __DIR__ . '/partials/themeStart.php';
+
+if (!empty($_POST)) {
+    // ETAPE 1 : Se connécter à la base de données
+    $pdo = new PDO('mysql:dbname=php-poo-blog;host=localhost', 'root');
+    var_dump('Nous sommes connécté à la base de données');
+
+    // ETAPE 2 : Envoyer une requête de création d'article
+    $title = $_POST['title'];
+    $description = $_POST['description'];
+    $content = $_POST['content'];
+
+    var_dump($title, $description, $content);
+}
+
 ?>
 
 <h1>Page de création d'un article</h1>
