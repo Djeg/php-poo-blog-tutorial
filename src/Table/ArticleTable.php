@@ -29,7 +29,19 @@ class ArticleTable
      */
     public function findAll(): array
     {
-        return [];
+        // On créé une requète SQL pour récupérer tout les articles
+        $sql = 'SELECT * FROM articles ORDER BY id DESC';
+
+        // On prépare notre requète SQL
+        $request = $this->pdo->prepare($sql);
+
+        // On éxecute la requète
+        $request->execute();
+
+        // On récupére tout les articles
+        $articles = $request->fetchAll();
+
+        return $articles;
     }
 
     /**
@@ -46,7 +58,7 @@ class ArticleTable
     public function createOne(
         string $title,
         string $description,
-        string $content,
+        string $content
     ): void {
     }
 }

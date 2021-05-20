@@ -7,21 +7,6 @@ require __DIR__ . '/partials/themeStart.php';
 // Faire en sorte que le code suivant fonctionne
 // $articles = $articleTable->findAll();
 
-// // On se connécte à la base de données
-// $pdo = new PDO('mysql:dbname=php-poo-blog;host=mysql', 'root', 'root');
-
-// // On créé une requète SQL pour récupérer tout les articles
-// $sql = 'SELECT * FROM articles ORDER BY id DESC';
-
-// // On prépare notre requète SQL
-// $request = $pdo->prepare($sql);
-
-// // On éxecute la requète
-// $request->execute();
-
-// // On récupére tout les articles
-// $articles = $request->fetchAll();
-
 $articles = $articleTable->findAll();
 
 ?>
