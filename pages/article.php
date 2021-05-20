@@ -17,6 +17,10 @@ $request->execute([$_GET['id']]);
 // On récupére un seul article !
 $article = $request->fetch(PDO::FETCH_ASSOC);
 
+if (empty($article)) {
+    throw new Exception('Article not found');
+}
+
 ?>
 
 <h1><?= $article['title'] ?></h1>

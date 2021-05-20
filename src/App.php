@@ -34,11 +34,29 @@ class App
         // ETAPE 2 : Nous affichons la page demandée
 
         $pagePath = __DIR__ . '/../pages/' . $pageName . '.php';
+        $pageContent = '';
+
+        // ob_start démarre l'enregistrement de tout les "echo"
+        // qui peuvent subvenir !
+        ob_start();
 
         if (file_exists($pagePath)) {
-            require $pagePath;
+            try {
+                require $pagePath;
+            } catch (Exception $exception) {
+                // ob_clean, permet de vider tous ce qui a été
+                // echo
+                ob_clean();
+                require __DIR__ . '/../pages/notFound.php';
+            }
         } else {
             require __DIR__ . '/../pages/notFound.php';
         }
+
+        // ob_get_clean permet de récupérer tout ce qui a été echo
+        // dans une variable
+        $pageContent = ob_get_clean();
+
+        echo $pageContent;
     }
 }
