@@ -1,5 +1,7 @@
 <?php
 
+use Table\ArticleTable;
+
 /**
  * La class App est le point d'entré de notre application. C'est
  * l'objet principal !
@@ -12,11 +14,17 @@ class App
      */
     static public function start(): void
     {
+        // Nous créons une connexion à la base de données en utilisant
+        // la class PDO
+        $pdo = new PDO('mysql:dbname=php-poo-blog;host=mysql', 'root', 'root');
+        // Nous créons une instance de ArticleTable : $articleTable. Cette objet
+        // nous permet de récupérer / créer des articles.
+        $articleTable = new ArticleTable($pdo);
+
         // $_GET permet d'accèder au query string
         // ex: $_GET['page'] retourne la query string "page"
         // la fonction isset(...) permet de tester si un
         // élement est présent dans un tableaux.
-
 
         // ETAPE 1 : Nous récupérons le nom de la page demandée
         $pageName = 'list';

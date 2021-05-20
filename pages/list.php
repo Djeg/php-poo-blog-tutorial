@@ -1,20 +1,28 @@
 <?php
 require __DIR__ . '/partials/themeStart.php';
 
-// On se connécte à la base de données
-$pdo = new PDO('mysql:dbname=php-poo-blog;host=mysql', 'root', 'root');
+// Ici, au lieu d'utiliser PDO nous pouvons utiliser
+// notre instance de ArticleTable: $articleTable.
 
-// On créé une requète SQL pour récupérer tout les articles
-$sql = 'SELECT * FROM articles ORDER BY id DESC';
+// Faire en sorte que le code suivant fonctionne
+// $articles = $articleTable->findAll();
 
-// On prépare notre requète SQL
-$request = $pdo->prepare($sql);
+// // On se connécte à la base de données
+// $pdo = new PDO('mysql:dbname=php-poo-blog;host=mysql', 'root', 'root');
 
-// On éxecute la requète
-$request->execute();
+// // On créé une requète SQL pour récupérer tout les articles
+// $sql = 'SELECT * FROM articles ORDER BY id DESC';
 
-// On récupére tout les articles
-$articles = $request->fetchAll();
+// // On prépare notre requète SQL
+// $request = $pdo->prepare($sql);
+
+// // On éxecute la requète
+// $request->execute();
+
+// // On récupére tout les articles
+// $articles = $request->fetchAll();
+
+$articles = $articleTable->findAll();
 
 ?>
 
