@@ -1,19 +1,5 @@
 <?php
 require __DIR__ . '/partials/themeStart.php';
-
-$success = false;
-
-if (!empty($_POST)) {
-    // ETAPE 2 : Récupérer les données du formulaire
-    $title = $_POST['title'];
-    $description = $_POST['description'];
-    $content = $_POST['content'];
-
-    $articleTable->createOne($title, $description, $content);
-
-    $success = true;
-}
-
 ?>
 
 <h1>Page de création d'un article</h1>

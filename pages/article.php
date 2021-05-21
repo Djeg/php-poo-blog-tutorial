@@ -1,8 +1,5 @@
 <?php
 require __DIR__ . '/partials/themeStart.php';
-
-$article = $articleTable->findOne($_GET['id']);
-
 ?>
 
 <h1><?= $article['title'] ?></h1>
