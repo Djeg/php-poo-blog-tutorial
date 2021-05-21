@@ -12,21 +12,24 @@ class ListController
 {
     private ArticleTable $articleTable;
 
-    public function __construct(ArticleTable $articleTable)
+    private Page $page;
+
+    public function __construct(ArticleTable $articleTable, Page $page)
     {
         $this->articleTable = $articleTable;
+        $this->page = $page;
     }
 
     /**
      * Cette méthode permet d'afficher la page de list
+     * 
+     * On collabore plutot que des les créer
      */
     public function display(): void
     {
         $articles = $this->articleTable->findAll();
 
-        $page = new Page();
-
-        $page->print('list', [
+        $this->page->print('list', [
             'articles' => $articles
         ]);
     }

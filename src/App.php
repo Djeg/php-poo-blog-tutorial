@@ -21,6 +21,9 @@ class App
         // nous permet de récupérer / créer des articles.
         $articleTable = new ArticleTable($pdo);
 
+        // Création d'une instance de page
+        $page = new Page();
+
         // $_GET permet d'accèder au query string
         // ex: $_GET['page'] retourne la query string "page"
         // la fonction isset(...) permet de tester si un
@@ -41,7 +44,7 @@ class App
 
         if (file_exists(__DIR__ . '/' . str_replace('\\', '/', $controllerClassName) . '.php')) {
             // Maintenant que l'on a la class, nous pouvons l'instancier
-            $controller = new $controllerClassName($articleTable);
+            $controller = new $controllerClassName($articleTable, $page);
 
             // Nous affichons la page du controller
             $controller->display();
