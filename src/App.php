@@ -49,7 +49,7 @@ class App
             // Nous affichons la page du controller
             $controller->display();
         } else {
-            $controller = new Controller\NotFoundController($articleTable);
+            $controller = new Controller\NotFoundController($articleTable, $page);
 
             $controller->display();
         }

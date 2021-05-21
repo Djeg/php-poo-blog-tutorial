@@ -8,18 +8,8 @@ use Page;
 /**
  * Ce controller permet d'afficher et de gérer la page "list.php"
  */
-class ListController
+class ListController extends BaseController
 {
-    private ArticleTable $articleTable;
-
-    private Page $page;
-
-    public function __construct(ArticleTable $articleTable, Page $page)
-    {
-        $this->articleTable = $articleTable;
-        $this->page = $page;
-    }
-
     /**
      * Cette méthode permet d'afficher la page de list
      * 
