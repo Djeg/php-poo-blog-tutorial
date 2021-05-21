@@ -3,7 +3,7 @@
 namespace Controller;
 
 use Table\ArticleTable;
-use Exception;
+use Page;
 
 /**
  * Ce controller permet d'afficher et de gérer la page "list.php"
@@ -23,23 +23,11 @@ class ListController
     public function display(): void
     {
         $articles = $this->articleTable->findAll();
-        $pagePath = __DIR__ . '/../../pages/list.php';
 
-        // ob_start démarre l'enregistrement de tout les "echo"
-        // qui peuvent subvenir !
-        ob_start();
+        $page = new Page();
 
-        try {
-            require $pagePath;
-        } catch (Exception $exception) {
-            // ob_clean, permet de vider tous ce qui a été
-            // echo
-            ob_clean();
-            require __DIR__ . '/../pages/notFound.php';
-        }
-
-        // ob_get_clean permet de récupérer tout ce qui a été echo
-        // dans une variable
-        echo ob_get_clean();
+        $page->print('list', [
+            'articles' => $articles
+        ]);
     }
 }
