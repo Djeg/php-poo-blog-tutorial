@@ -36,32 +36,9 @@ class App
             $pageName = $_GET['page'];
         }
 
-        // file_exists('/chemin/vers/le/fichier.php') retourne true
-        // si le fichier existe, false sinon.
+        $controllerName = 'Controller\\' . ucfirst($pageName) . 'Controller';
+        $controller = new $controllerName($articleTable);
 
-        // ETAPE 2 : Nous affichons la page demandée
-
-        $pagePath = __DIR__ . '/../pages/' . $pageName . '.php';
-
-        // ob_start démarre l'enregistrement de tout les "echo"
-        // qui peuvent subvenir !
-        ob_start();
-
-        if (file_exists($pagePath)) {
-            try {
-                require $pagePath;
-            } catch (Exception $exception) {
-                // ob_clean, permet de vider tous ce qui a été
-                // echo
-                ob_clean();
-                require __DIR__ . '/../pages/notFound.php';
-            }
-        } else {
-            require __DIR__ . '/../pages/notFound.php';
-        }
-
-        // ob_get_clean permet de récupérer tout ce qui a été echo
-        // dans une variable
-        echo ob_get_clean();
+        $controller->display();
     }
 }
