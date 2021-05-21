@@ -36,9 +36,19 @@ class App
             $pageName = $_GET['page'];
         }
 
-        $controllerName = 'Controller\\' . ucfirst($pageName) . 'Controller';
-        $controller = new $controllerName($articleTable);
+        // Ici on déduit le nom de la class controller à instancier
+        $controllerClassName = 'Controller\\' . ucfirst($pageName) . 'Controller';
 
-        $controller->display();
+        if (file_exists(__DIR__ . '/' . str_replace('\\', '/', $controllerClassName) . '.php')) {
+            // Maintenant que l'on a la class, nous pouvons l'instancier
+            $controller = new $controllerClassName($articleTable);
+
+            // Nous affichons la page du controller
+            $controller->display();
+        } else {
+            $controller = new Controller\NotFoundController($articleTable);
+
+            $controller->display();
+        }
     }
 }
